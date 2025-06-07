@@ -4,11 +4,13 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.devtools.ksp)
     alias(libs.plugins.google.dagger.hilt.android)
+    alias(libs.plugins.jetbrains.kotlin.serialization)
+
 }
 
 android {
     namespace = "com.apprajapati.rapidcents"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.apprajapati.rapidcents"
@@ -80,6 +82,17 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //Nav3
+    //Core nav3 api. Includes NavEntry, Entry provider, and DSL
+    implementation(libs.androidx.navigation3.runtime)
+    //provides classes to display content, including NavDisplay and Scene
+    implementation(libs.androidx.navigation3.ui)
+    //allows view models to be scoped to entries in the back stack
+    implementation(libs.androidx.lifecycle.viewmodel.navigation3)
+
+    implementation(libs.kotlinx.serialization.core)
+    implementation(libs.kotlinx.serialization.json)
 }
 
 java {
