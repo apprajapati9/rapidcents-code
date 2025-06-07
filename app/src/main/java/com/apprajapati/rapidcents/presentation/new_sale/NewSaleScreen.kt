@@ -36,7 +36,7 @@ fun NewSaleScreen(viewModel: RapidViewModel = hiltViewModel()) {
 
     val paymentResult by viewModel.paymentResult.collectAsState()
 
-    val cardData by remember {
+    var cardData by remember {
         mutableStateOf(Card())
     }
 
@@ -48,6 +48,8 @@ fun NewSaleScreen(viewModel: RapidViewModel = hiltViewModel()) {
         is PaymentResult.Approved -> {
             ShowPaymentResult(message = "Payment Successful", color = Color.Green){
                 viewModel.resetPaymentState()
+                amount = 0.0
+                cardData = Card()
             }
         }
 
@@ -63,6 +65,8 @@ fun NewSaleScreen(viewModel: RapidViewModel = hiltViewModel()) {
                 color = Color.Red
         ){
                 viewModel.resetPaymentState()
+                amount = 0.0
+                cardData = Card()
             }
 
         PaymentResult.None -> {
